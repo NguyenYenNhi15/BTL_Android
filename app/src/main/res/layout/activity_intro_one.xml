@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".introActivity.IntroOneActivity">
+
+
+    <ImageView
+        android:id="@+id/bgapp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"         />
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/logo"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginBottom="-54dp"
+        android:gravity="start"
+        android:shadowRadius="15"
+        android:text="QUẢN LÝ SINH VIÊN"
+        android:textAlignment="textStart"
+        android:textColor="#0C0C0C"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="126dp"
+        android:layout_marginTop="317dp"
+        android:outlineAmbientShadowColor="#C33030"
+        android:src="@drawable/student" />
+
+    <ImageView
+        android:id="@+id/imgOngVnag"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_ptit" />
+</RelativeLayout>
