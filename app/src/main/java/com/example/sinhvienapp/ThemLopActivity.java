@@ -62,7 +62,6 @@ public class ThemLopActivity extends AppCompatActivity {
                         Toast.makeText(ThemLopActivity.this, "Them that bai", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
         });
 

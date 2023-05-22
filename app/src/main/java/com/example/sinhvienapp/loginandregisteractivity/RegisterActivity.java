@@ -29,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         init();
         rlayout = findViewById(R.id.rlayout);
         animation = AnimationUtils.loadAnimation(this, R.anim.uptodowndiagonal);
@@ -42,12 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
                 txtRegTk.setText("");
             }
         });
-
         btDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tkDao = new DaoTaiKhoan(RegisterActivity.this);
-
                 String tk = txtRegTk.getText().toString();
                 String mk = txtRegMk.getText().toString();
                 String mkk = txtRegMkk.getText().toString();
@@ -59,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     xetMk = false;
                 }
-
                 for (int i = 0; i < listTk.size(); i++) {
                     TaikhoanMatKhau tkx = listTk.get(i);
                     if (tkx.getTenTaiKhoan().matches(tk)) {
@@ -67,7 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
                         break;
                     }
                 }
-
                 if (tk.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Tên tài khoản không được để trống!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -78,7 +73,6 @@ public class RegisterActivity extends AppCompatActivity {
                             if (xetMk == true) {
                                 tkDao.Them(tkmk);
                                 Toast.makeText(RegisterActivity.this, "Thêm tài khoản thành công!", Toast.LENGTH_SHORT).show();
-
                                 Intent i = new Intent();
                                 i.putExtra("taikhoan",tk);
                                 i.putExtra("matkhau",mk);
@@ -89,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Mật khẩu không khớp nhau!", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Tên tài khoản k được trùng!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Tên tài khoản không được trùng!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -97,7 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
     private void init() {
-
         txtRegTk = findViewById(R.id.edtRegUser);
         txtRegMk = findViewById(R.id.edtRegPassword);
         txtRegMkk = findViewById(R.id.edtRePassword);

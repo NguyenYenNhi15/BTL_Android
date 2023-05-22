@@ -22,27 +22,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class DanhSachChuyenNganh extends AppCompatActivity {
-
-    FloatingActionButton fbadd;
-    FloatingActionButton fab;
-    FloatingActionButton fbHome;
-    FloatingActionButton fabDangXuat;
+    FloatingActionButton fbadd,fab,fbHome,fabDangXuat;
     TextView tvanhien;
     EditText edtSearch;
-
     ArrayList<ChuyenNganh> dschuyenn = new ArrayList<>();
     ArrayList<ChuyenNganh> timKiem = new ArrayList<>();
-
-    ArrayList<SinhVien> svlist;
-    static ArrayList<SinhVien> svlistDuocLoc;
     public static boolean xetList = true;
-
     ListView listView;
     ChuyenNganhAdapter chuyenNganhAdapter;
-
     ChuyenNganhDao chuyenNganhDao;
-    SinhVienDao sinhVienDao;
-
     Boolean isOpen = false;
 
     @Override
@@ -85,10 +73,8 @@ public class DanhSachChuyenNganh extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (count < before) {
                     chuyenNganhAdapter.resetData();
-
                 } else {
                     chuyenNganhAdapter.getFilter().filter(s);
-
                 }
             }
 
@@ -97,8 +83,6 @@ public class DanhSachChuyenNganh extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void fbAction() {

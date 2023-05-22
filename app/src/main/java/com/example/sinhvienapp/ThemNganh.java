@@ -21,8 +21,6 @@ public class ThemNganh extends AppCompatActivity {
     EditText edtMNganh, etTenNganh;
     Button btnLuu, btnXemNganh;
     ChuyenNganhDao chuyenNganhDao;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

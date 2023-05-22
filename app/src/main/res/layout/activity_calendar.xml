@@ -2,11 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/custom_toolbar_event" />
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#2196F3"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/calendar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:text="LỊCH "
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/compactcalendar_view"
@@ -34,45 +53,6 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true">
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fbDangXuatEvent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icondangxuat"
-                app:backgroundTint="#FF0000"
-                android:layout_marginBottom="12dp"
-                android:layout_gravity="bottom|center_horizontal"
-                app:fabSize="mini"/>
-
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fbHomeEvent"
-                android:src="@drawable/ic_home"
-                app:fabSize="mini"
-                android:layout_marginBottom="12dp"
-                app:backgroundTint="#F44336"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabevent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add"
-                android:layout_marginBottom="12dp"
-                android:layout_gravity="bottom|center_horizontal"
-                app:backgroundTint="#F44336"
-                app:fabSize="normal"
-                />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="-137dp"
-                android:layout_gravity="bottom|center_horizontal"
-                android:src="@drawable/toolbarbottom" />
-
         </FrameLayout>
 
     </RelativeLayout>

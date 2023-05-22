@@ -28,13 +28,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class LopAdapter extends BaseAdapter implements Filterable {
     Activity context;
     int layout;
-    ArrayList<Lop> dslop;
-    ArrayList<Lop> dsSortLop;
+    ArrayList<Lop> dslop, dsSortLop;
     private Filter lopFilter;
     LopDao lopDao;
     Animation animation;
-
-
     public LopAdapter(Activity context, int layout, ArrayList<Lop> dslop) {
         this.context = context;
         this.layout = layout;
@@ -63,11 +60,10 @@ public class LopAdapter extends BaseAdapter implements Filterable {
         this.dslop = dsl;
         notifyDataSetChanged();
     }
-
     public void resetData() {
         this.dslop = dsSortLop;
     }
-
+    // trả về tìm kiếm
     @Override
     public Filter getFilter() {
         if (lopFilter == null) {
@@ -75,9 +71,8 @@ public class LopAdapter extends BaseAdapter implements Filterable {
         }
         return lopFilter;
     }
-
+    // tìm kiếm bằng cách lọc dữ liệu trong danh sách lớp
     public class CustomFilter extends Filter {
-
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
@@ -87,7 +82,7 @@ public class LopAdapter extends BaseAdapter implements Filterable {
             } else {
                 ArrayList<Lop> dslopmoi = new ArrayList<Lop>();
                 for (Lop lop : dslop) {
-                    if (lop.getTenLop().toUpperCase().startsWith(constraint.toString().toUpperCase())) {
+                    if (lop.getTenLop().toUpperCase().contains(constraint.toString().toUpperCase())) {
                         dslopmoi.add(lop);
                     }
                 }
@@ -147,27 +142,18 @@ public class LopAdapter extends BaseAdapter implements Filterable {
                 final EditText edtmaLop = view.findViewById(R.id.edteditMaLop);
                 final EditText edtTenLop = view.findViewById(R.id.edteditTenLop);
                 Button btnSua = view.findViewById(R.id.btnCapNhat);
-                Button btnLai = view.findViewById(R.id.btnEdNhapLai);
-
-
-                //Đổ dữ liệu
                 edtmaLop.setText(lop.getMaLop());
                 edtTenLop.setText(lop.getTenLop());
-
-
                 builder.setView(view);
                 final AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-
                 btnSua.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
                             String maLop = edtmaLop.getText().toString();
                             String tenLop = edtTenLop.getText().toString();
-
                             Lop lop1 = new Lop(maLop, tenLop);
-
                             //Update vào sql
                             if (lopDao.update(lop1)) {
                                 Toast.makeText(context, "Sửa thành công!", Toast.LENGTH_SHORT).show();
@@ -177,9 +163,7 @@ public class LopAdapter extends BaseAdapter implements Filterable {
                                 alertDialog.dismiss();
                             } else {
                                 Toast.makeText(context, "Sửa thất bại!", Toast.LENGTH_SHORT).show();
-
                             }
-
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }

@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         animation = AnimationUtils.loadAnimation(this, R.anim.uptodowndiagonal);
         linearLayout.startAnimation(animation);
         layThongTin();
-
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void layThongTin() {
         SharedPreferences sharedPreferences = getSharedPreferences("sinhvien", MODE_PRIVATE);
-
         boolean check = sharedPreferences.getBoolean("checkstatus", false);
         if (check) {
             String tenNguoiDung = sharedPreferences.getString("tennguoidung", "");

@@ -37,18 +37,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SinhVienAdapter extends BaseAdapter implements Filterable {
     Context context;
-
-    ArrayList<SinhVien> ds;
-    ArrayList<SinhVien> dsSortSinhVien;
+    ArrayList<SinhVien> ds,dsSortSinhVien;
     private Filter svFilter;
-
     LopDao lopDao;
     ChuyenNganhDao chuyenNganhDao;
     SinhVienDao sinhVienDao;
     ArrayList<Lop> dsmaLop = new ArrayList<>();
-    Animation animation;
     public static final int REQUEST_CODE_GALLERY = 777;
-
     public SinhVienAdapter(Context context, ArrayList<SinhVien> ds) {
         this.context = context;
         this.ds = ds;
@@ -104,7 +99,7 @@ public class SinhVienAdapter extends BaseAdapter implements Filterable {
             } else {
                 ArrayList<SinhVien> dssv = new ArrayList<SinhVien>();
                 for (SinhVien sv : ds) {
-                    if (sv.getTenSv().toUpperCase().startsWith(constraint.toString().toUpperCase())) {
+                    if (sv.getTenSv().toUpperCase().contains(constraint.toString().toUpperCase())) {
                         dssv.add(sv);
                     }
                 }

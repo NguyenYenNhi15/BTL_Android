@@ -46,23 +46,18 @@ public class ThemSinhVienActivity extends AppCompatActivity {
 
         lsDao = new LopDao(ThemSinhVienActivity.this);
         lsChuyennganhDao = new ChuyenNganhDao(ThemSinhVienActivity.this);
-
         linearLayout = findViewById(R.id.linearLayout);
         edtMasv = findViewById(R.id.txtMaSV);
         edtTensv = findViewById(R.id.txtTenSV);
         edtHinh = findViewById(R.id.txtHinh);
         edtemail = findViewById(R.id.txtemail);
-
         spMaLop = findViewById(R.id.txtMalop);
         spMaNganh = findViewById(R.id.txtMaNganh);
-
-
         btnThem = findViewById(R.id.btntThem);
         btnNhapLai = findViewById(R.id.btnNhapLai);
         btnDanhSach = findViewById(R.id.btnDanhSach);
         btnReview = findViewById(R.id.btnReviewThem);
         imgAvata = findViewById(R.id.imgAvata);
-
         daoSach = new SinhVienDao(ThemSinhVienActivity.this);
         animation = AnimationUtils.loadAnimation(this, R.anim.uptodowndiagonal);
         linearLayout.setAnimation(animation);
@@ -74,8 +69,6 @@ public class ThemSinhVienActivity extends AppCompatActivity {
                 edtemail.setText("");
             }
         });
-
-
         btnDanhSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +124,6 @@ public class ThemSinhVienActivity extends AppCompatActivity {
                         SinhVien s = new SinhVien(ma, ten, email, hinh, maLop,manganh);
                         if (daoSach.insert(s)) {
                             Toast.makeText(ThemSinhVienActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
-
                         } else {
                             Toast.makeText(ThemSinhVienActivity.this, " Không được trùng mã sinh viên ", Toast.LENGTH_LONG).show();
                         }
@@ -141,11 +133,7 @@ public class ThemSinhVienActivity extends AppCompatActivity {
                     e.printStackTrace();
                     Toast.makeText(ThemSinhVienActivity.this, "Lỗi : " + e, Toast.LENGTH_LONG).show();
                 }
-
             }
         });
-
     }
-
-
 }

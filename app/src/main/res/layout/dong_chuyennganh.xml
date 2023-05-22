@@ -38,7 +38,7 @@
                     <TextView
                         android:textSize="18dp"
                         android:textStyle="bold"
-                        android:id="@+id/tvMaChuuyenNganh"
+                        android:id="@+id/tvMaChuyenNganh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TextView" />

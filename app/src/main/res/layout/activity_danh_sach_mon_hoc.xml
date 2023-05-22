@@ -6,13 +6,34 @@
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
     tools:context=".DanhSachMonHoc">
-    <include
-        layout="@layout/toolbar_dsmonhoc"
-        android:id="@+id/toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#2196F3"
+        android:orientation="horizontal"
+        android:id="@+id/toolbar"
+        android:weightSum="2">
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/logotoolbar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:text="DANH SÁCH MÔN HỌC"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <EditText
         android:layout_below="@id/toolbar"
-        android:id="@+id/edttennganh"
+        android:id="@+id/edtmonhoc"
         android:background="#FFFFFF"
         android:padding="15dp"
 
@@ -22,12 +43,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
     <ListView
         android:id="@+id/listviewLop"
         android:layout_marginBottom="57dp"
         tools:listitem="@layout/dongmonhoc"
-        android:layout_below="@id/edttennganh"
+        android:layout_below="@id/edtmonhoc"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <RelativeLayout
@@ -90,11 +110,9 @@
         </FrameLayout>
 
     </RelativeLayout>
-
-
     <TextView
         android:id="@+id/tvAnHien"
-        android:text="Không có chuyên ngành trong danh sách"
+        android:text="Không có môn học trong danh sách"
         android:textColor="#FFFFFF"
         android:visibility="invisible"
         android:layout_centerInParent="true"

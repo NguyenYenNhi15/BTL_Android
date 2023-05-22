@@ -21,23 +21,13 @@ import java.util.ArrayList;
 
 public class DanhSachMonHoc extends AppCompatActivity {
 
-    FloatingActionButton fbadd;
-    FloatingActionButton fab;
-    FloatingActionButton fbHome;
-    FloatingActionButton fabDangXuat;
+    FloatingActionButton fbadd,fab,fbHome,fabDangXuat;
     TextView tvanhien;
     EditText edtSearch;
-
     ArrayList<MonHoc> dsmonhoc = new ArrayList<>();
     ArrayList<MonHoc> timKiem = new ArrayList<>();
-
-
-
     ListView listView;
-    MonHocAdapter monHocAdapter;
     MonHocDao monHocDao;
-
-
     Boolean isOpen = false;
 
     @Override
@@ -50,13 +40,11 @@ public class DanhSachMonHoc extends AppCompatActivity {
         fbHome = findViewById(R.id.fbHomeLop);
         fab = findViewById(R.id.fab1);
         fabDangXuat = findViewById(R.id.fbDangXuatLop);
-        edtSearch = findViewById(R.id.edttennganh);
+        edtSearch = findViewById(R.id.edtmonhoc);
         fbAction();
         monHocDao = new MonHocDao(DanhSachMonHoc.this);
-
         dsmonhoc = monHocDao.getAll();
         timKiem = monHocDao.getAll();
-
         fbadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +54,6 @@ public class DanhSachMonHoc extends AppCompatActivity {
 
         final MonHocAdapter monHocAdapter= new MonHocAdapter(DanhSachMonHoc.this, R.layout.dongmonhoc, dsmonhoc);
         listView.setAdapter(monHocAdapter);
-
         if (dsmonhoc.size() == 0) {
             listView.setVisibility(View.INVISIBLE);
             tvanhien.setVisibility(View.VISIBLE);
@@ -74,34 +61,24 @@ public class DanhSachMonHoc extends AppCompatActivity {
             listView.setVisibility(View.VISIBLE);
             tvanhien.setVisibility(View.INVISIBLE);
         }
-
-
-
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Search or Filter
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (count < before) {
                     monHocAdapter.resetData();
-
                 } else {
                     monHocAdapter.getFilter().filter(s);
-
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
-
-
     }
 
     private void fbAction() {
@@ -109,7 +86,6 @@ public class DanhSachMonHoc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DanhSachMonHoc.this, LoginActivity.class));
-
             }
         });
         fbHome.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +112,6 @@ public class DanhSachMonHoc extends AppCompatActivity {
         fbadd.animate().translationY(-getResources().getDimension(R.dimen.stan_105));
         fabDangXuat.animate().translationY(-getResources().getDimension(R.dimen.stan_155));
     }
-
     private void closeMenu() {
         isOpen = false;
         fbHome.animate().translationY(0);

@@ -43,7 +43,6 @@ public class ThemMonHoc extends AppCompatActivity {
                 overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

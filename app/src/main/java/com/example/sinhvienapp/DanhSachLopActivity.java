@@ -24,26 +24,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class DanhSachLopActivity extends AppCompatActivity {
-    FloatingActionButton fbadd;
-    FloatingActionButton fab;
-    FloatingActionButton fbHome;
-    FloatingActionButton fabDangXuat;
+    FloatingActionButton fbadd,fab,fbHome,fabDangXuat;
     TextView tvanhien;
     EditText edtSearch;
-
     ArrayList<Lop> dsLop = new ArrayList<>();
     ArrayList<Lop> timKiem = new ArrayList<>();
-
     ArrayList<SinhVien> svlist;
     static ArrayList<SinhVien> svlistDuocLoc;
     public static boolean xetList = true;
-
     ListView listView;
     LopAdapter lopAdapter;
-
     LopDao lopDao;
     SinhVienDao sinhVienDao;
-
     Boolean isOpen = false;
 
     @Override
@@ -59,20 +51,16 @@ public class DanhSachLopActivity extends AppCompatActivity {
         edtSearch = findViewById(R.id.edtserchLop);
         fbAction();
         lopDao = new LopDao(DanhSachLopActivity.this);
-
         dsLop = lopDao.getAll();
         timKiem = lopDao.getAll();
-
         fbadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DanhSachLopActivity.this, ThemLopActivity.class));
             }
         });
-
         lopAdapter = new LopAdapter(DanhSachLopActivity.this, R.layout.dong_lop, dsLop);
         listView.setAdapter(lopAdapter);
-
         if (dsLop.size() == 0) {
             listView.setVisibility(View.INVISIBLE);
             tvanhien.setVisibility(View.VISIBLE);
@@ -89,7 +77,6 @@ public class DanhSachLopActivity extends AppCompatActivity {
                 int dem = 0;
                 svlistDuocLoc = new ArrayList<>();
                 for (int i = 0; i < svlist.size(); i++) {
-
                     SinhVien sv = svlist.get(i);
                     if (maLop.matches(sv.getMaLop())) {
                         svlistDuocLoc.add(svlist.get(i));
@@ -105,41 +92,29 @@ public class DanhSachLopActivity extends AppCompatActivity {
                 }
             }
         });
-
-
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Search or Filter
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (count < before) {
                     lopAdapter.resetData();
-
                 } else {
                     lopAdapter.getFilter().filter(s);
-
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
-
-
     }
-
     private void fbAction() {
         fabDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DanhSachLopActivity.this, LoginActivity.class));
-
             }
         });
         fbHome.setOnClickListener(new View.OnClickListener() {

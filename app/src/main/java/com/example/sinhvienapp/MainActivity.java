@@ -24,12 +24,8 @@ public class MainActivity extends AppCompatActivity {
     EditText edtSearch;
     public static ArrayList<SinhVien> ds = new ArrayList<>();
     ArrayList<SinhVien> timKiem = new ArrayList<>();
-
     SinhVienAdapter sinhVienAdapter;
-    FloatingActionButton fbadd;
-    FloatingActionButton fab;
-    FloatingActionButton fbHome;
-    FloatingActionButton fabDangXuat;
+    FloatingActionButton fbadd,fab,fbHome,fabDangXuat;
     SinhVienDao sinhVienDao;
     Boolean isOpen = false;
 
@@ -43,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         fbHome = findViewById(R.id.fbHome);
         fabDangXuat = findViewById(R.id.fbDangXuat);
-
         sinhVienDao = new SinhVienDao(MainActivity.this);
         if (DanhSachLopActivity.xetList == true) {
             ds = DanhSachLopActivity.svlistDuocLoc;
@@ -62,18 +57,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         listView.setTextFilterEnabled(true);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-               SinhVien sinhVien = ds.get(position);
-               Intent intent = new Intent(MainActivity.this,ThongTinDiem.class);
-               Bundle bundle = new Bundle();
-               bundle.putSerializable("SINHVIEN",sinhVien);
-               intent.putExtras(bundle);
-               startActivity(intent);
-            }
-        });
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -110,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!isOpen) {
                     openMenu();
-
-
                 } else {
                     closeMenu();
                 }
@@ -135,14 +116,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
         if (DanhSachLopActivity.xetList == true) {
             ds = DanhSachLopActivity.svlistDuocLoc;
         } else {
             ds.clear();
             ds.addAll(sinhVienDao.getALL());
         }
-
         sinhVienAdapter.notifyDataSetChanged();
         super.onResume();
 

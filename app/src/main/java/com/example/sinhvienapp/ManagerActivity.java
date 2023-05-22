@@ -26,16 +26,11 @@ import java.util.ArrayList;
 public class ManagerActivity extends AppCompatActivity  {
     ImageView btnLop , btnSinhVien, btnInFo, btnDangXuat, btnWebste,btnEvent;
     Animation animation;
-    TextView txtWelcome,tv1,tv2,tv3,tv4,tv5,tv6;
+    TextView txtWelcome,tvclass,tvstudent,tvwebsite,tvevent,tvinfo,tvdangxuat;
     GridLayout gridLayout;
-    Toolbar toolbar;
-    DaoTaiKhoan tkDao;
     ImageView imageViewMenu;
-    Intent intent,it2;
-    ArrayList<TaikhoanMatKhau> listTK = new ArrayList<>();
-
+    Intent intent;
     CardView cardView,cardMon;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +41,6 @@ public class ManagerActivity extends AppCompatActivity  {
         btnSinhVien = findViewById(R.id.btnsinhvien);
         txtWelcome = findViewById(R.id.myDashboard);
         cardView= findViewById(R.id.quanlinganh);
-
         cardMon = findViewById(R.id.monhoc);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,15 +57,13 @@ public class ManagerActivity extends AppCompatActivity  {
                 ManagerActivity.this.overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-
         textWelcome();
-
-        tv1 = findViewById(R.id.tvclass);
-        tv2 = findViewById(R.id.tvstudent);
-        tv3 = findViewById(R.id.tvwebsite);
-        tv4= findViewById(R.id.tvevent);
-        tv5 = findViewById(R.id.tvinfo);
-        tv6 = findViewById(R.id.tvdangxuat);
+        tvclass = findViewById(R.id.tvclass);
+        tvstudent = findViewById(R.id.tvstudent);
+        tvwebsite = findViewById(R.id.tvwebsite);
+        tvevent= findViewById(R.id.tvevent);
+        tvinfo = findViewById(R.id.tvinfo);
+        tvdangxuat = findViewById(R.id.tvdangxuat);
         btnInFo = findViewById(R.id.btninfo);
         btnWebste = findViewById(R.id.btnwebsite);
         btnEvent =findViewById(R.id.btnevent);
@@ -87,7 +79,6 @@ public class ManagerActivity extends AppCompatActivity  {
                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                   @Override
                   public boolean onMenuItemClick(MenuItem item) {
-
                       switch (item.getItemId()){
                           case R.id.menuDoimatkhau:
                               intent=new Intent(ManagerActivity.this, ChangePasswordActivity.class);
@@ -118,7 +109,7 @@ public class ManagerActivity extends AppCompatActivity  {
                 overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-        tv5.setOnClickListener(new View.OnClickListener() {
+        tvinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ManagerActivity.this, InFoAppActivity.class));
@@ -132,7 +123,7 @@ public class ManagerActivity extends AppCompatActivity  {
                 overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-        tv6.setOnClickListener(new View.OnClickListener() {
+        tvdangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ManagerActivity.this, LoginActivity.class));
@@ -146,7 +137,7 @@ public class ManagerActivity extends AppCompatActivity  {
                 overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-        tv1.setOnClickListener(new View.OnClickListener() {
+        tvclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ManagerActivity.this, DanhSachLopActivity.class));
@@ -161,7 +152,7 @@ public class ManagerActivity extends AppCompatActivity  {
                 overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-        tv2.setOnClickListener(new View.OnClickListener() {
+        tvstudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DanhSachLopActivity.xetList = false;
@@ -169,10 +160,6 @@ public class ManagerActivity extends AppCompatActivity  {
                 overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-
-
-
-
         btnWebste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +168,7 @@ public class ManagerActivity extends AppCompatActivity  {
                 startActivity(myWebLink);
             }
         });
-       tv3.setOnClickListener(new View.OnClickListener() {
+       tvwebsite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
@@ -196,7 +183,7 @@ public class ManagerActivity extends AppCompatActivity  {
                 overridePendingTransition(R.anim.ani_intent, R.anim.ani_intenexit);
             }
         });
-        tv4.setOnClickListener(new View.OnClickListener() {
+        tvevent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ManagerActivity.this, Calendar.class));

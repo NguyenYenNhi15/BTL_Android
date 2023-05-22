@@ -28,7 +28,6 @@ public class ChuyenNganhDao {
             ChuyenNganh s = new ChuyenNganh(machuyennganh, tenchuyennganh);
             lsList.add(s);
             cs.moveToNext();
-
         }
         cs.close();
         return lsList;
@@ -41,7 +40,6 @@ public class ChuyenNganhDao {
         }
         return null;
     }
-
 
     public boolean insert(ChuyenNganh chuyenNganh) {
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();

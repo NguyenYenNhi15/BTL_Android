@@ -29,10 +29,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
     Activity context;
     int layout;
-    ArrayList<ChuyenNganh> dsChuyenNganh;
-    ArrayList<ChuyenNganh> dsSortChuyenNganh;
-    private Filter chuyenNFilter;
-    ChuyenNganhDao chuyenDao;
+    ArrayList<ChuyenNganh> dsChuyenNganh,dsSortChuyenNganh;
+    private Filter chuyenNganhFilter;
+    ChuyenNganhDao chuyenNganhDao;
     Animation animation;
 
 
@@ -74,10 +73,10 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Filter getFilter() {
-        if (chuyenNFilter == null) {
-            chuyenNFilter = new ChuyenNganhAdapter.CustomFilter();
+        if (chuyenNganhFilter == null) {
+            chuyenNganhFilter = new ChuyenNganhAdapter.CustomFilter();
         }
-        return chuyenNFilter;
+        return chuyenNganhFilter;
     }
 
     public class CustomFilter extends Filter {
@@ -91,7 +90,7 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
             } else {
                 ArrayList<ChuyenNganh> dscnmoi = new ArrayList<ChuyenNganh>();
                 for (ChuyenNganh chuyenNganh : dsChuyenNganh) {
-                    if (chuyenNganh.getTenChuyenNganh().toUpperCase().startsWith(constraint.toString().toUpperCase())) {
+                    if (chuyenNganh.getTenChuyenNganh().toUpperCase().contains(constraint.toString().toUpperCase())) {
                         dscnmoi.add(chuyenNganh);
                     }
                 }
@@ -114,7 +113,7 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
     }
 
     private class ViewHolder {
-        TextView tvMaChuuyenNganh, tvTenChuyenNganh;
+        TextView tvMaChuyenNganh, tvTenChuyenNganh;
         CircleImageView imageViewhinh;
         ImageView ivDelete, ivEdit;
         LinearLayout linearLayout;
@@ -128,7 +127,7 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
             convertView = inflater.inflate(layout, null);
             holder = new ChuyenNganhAdapter.ViewHolder();
             holder.linearLayout=convertView.findViewById(R.id.linearLayoutSuaLop);
-            holder.tvMaChuuyenNganh = convertView.findViewById(R.id.tvMaChuuyenNganh);
+            holder.tvMaChuyenNganh = convertView.findViewById(R.id.tvMaChuyenNganh);
             holder.tvTenChuyenNganh = convertView.findViewById(R.id.tvTenChuyenNganh);
             holder.ivDelete = convertView.findViewById(R.id.imageViewdeletelop);
             holder.imageViewhinh = convertView.findViewById(R.id.imageView);
@@ -138,20 +137,16 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
             holder = (ChuyenNganhAdapter.ViewHolder) convertView.getTag();
         }
         final ChuyenNganh chuyenNganh = dsChuyenNganh.get(position);
-
-
         holder.ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                chuyenDao = new ChuyenNganhDao(context);
+                chuyenNganhDao = new ChuyenNganhDao(context);
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 View view = inflater.inflate(R.layout.edit_nganh, null);
                 final EditText etmanganh = view.findViewById(R.id.edteditMaLop);
                 final EditText ettennganh = view.findViewById(R.id.edteditTenLop);
                 Button btnSua = view.findViewById(R.id.btnCapNhat);
-                //Đổ dữ liệu
                 etmanganh.setText(chuyenNganh.getMaChuyenNganh());
                 ettennganh.setText(chuyenNganh.getTenChuyenNganh());
                 builder.setView(view);
@@ -165,10 +160,10 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
                             String ten = ettennganh.getText().toString();
                             ChuyenNganh chuyenNganh1 = new ChuyenNganh(ma, ten);
                             //Update vào sql
-                            if (chuyenDao.update(chuyenNganh1)) {
+                            if (chuyenNganhDao.update(chuyenNganh1)) {
                                 Toast.makeText(context, "Sửa thành công!", Toast.LENGTH_SHORT).show();
                                 dsChuyenNganh.clear();
-                                dsChuyenNganh.addAll(chuyenDao.getAll());
+                                dsChuyenNganh.addAll(chuyenNganhDao.getAll());
                                 notifyDataSetChanged();
                                 alertDialog.dismiss();
                             } else {
@@ -184,7 +179,6 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Thông báo");
                 builder.setMessage("Bạn có chắc chắn xóa ngành  "+ chuyenNganh.getTenChuyenNganh()+" không ? \nCảnh báo nếu bạn xóa lớp "+
@@ -192,11 +186,11 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
                 builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        chuyenDao = new ChuyenNganhDao(context);
-                        if (chuyenDao.delete(chuyenNganh.getMaChuyenNganh())) {
+                        chuyenNganhDao = new ChuyenNganhDao(context);
+                        if (chuyenNganhDao.delete(chuyenNganh.getMaChuyenNganh())) {
                             Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
                             dsChuyenNganh.clear();
-                            dsChuyenNganh.addAll(chuyenDao.getAll());
+                            dsChuyenNganh.addAll(chuyenNganhDao.getAll());
                             notifyDataSetChanged();
                             dialog.dismiss();
                         } else {
@@ -210,14 +204,11 @@ public class ChuyenNganhAdapter extends BaseAdapter implements Filterable {
                         dialog.dismiss();
                     }
                 });
-
                 final AlertDialog myAlert = builder.create();
                 myAlert.show();
             }
         });
-
-
-        holder.tvMaChuuyenNganh.setText(chuyenNganh.getMaChuyenNganh());
+        holder.tvMaChuyenNganh.setText(chuyenNganh.getMaChuyenNganh());
         holder.tvTenChuyenNganh.setText(chuyenNganh.getTenChuyenNganh());
         holder.imageViewhinh.setImageResource(R.drawable.ic_ptit);
         return convertView;
